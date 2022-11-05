@@ -92,5 +92,6 @@ ansible-lint /mnt/virtual_box/check_url.yml
 ansible-playbook --syntax-check /mnt/virtual_box/nginx_and_postgres.yml
 
 # hello world для ansible-playbook
-ansible-playbook -i /mnt/virtual_box/host.ini /mnt/virtual_box/check_url.yml --step
-ansible-playbook --syntax-check /mnt/virtual_box/check_url.yml
+    ansible-playbook -i /mnt/virtual_box/host.ini /mnt/virtual_box/check_url.yml --step
+    
+    ansible-playbook --syntax-check /mnt/virtual_box/check_url.yml
