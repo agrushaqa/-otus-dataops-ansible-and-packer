@@ -1,0 +1,12 @@
+---
+- name: Grusha url check
+  hosts: all
+  tasks:
+    - name: Creating an empty
+      uri:
+        url: https://www.gismeteo.com/
+        return_content: yes
+      register: result
+      until: '"Weather" in result.content'
+      retries: 10
+      delay: 1

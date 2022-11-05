@@ -1,0 +1,35 @@
+{
+    "builders": [
+      {
+        "type":      "yandex",
+        "token":     "<OAuth-токен>",
+        "folder_id": "<идентификатор каталога>",
+        "zone":      "ru-central1-a",
+  
+        "image_name":        "debian-11-nginx-{{isotime | clean_resource_name}}",
+        "image_family":      "debian-web-server",
+        "image_description": "my custom debian with nginx",
+  
+        "source_image_family": "debian-11",
+        "subnet_id":           "<идентификатор подсети>",
+        "use_ipv4_nat":        true,
+        "disk_type":           "network-ssd",
+        "ssh_username":        "debian"
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "sudo apt -y update && sudo apt -y upgrade",
+          "sudo apt -y install python3-pip",
+          "sudo pip3 --no-cache-dir install ansible"
+        ]
+      },
+      {
+        "type": "ansible",
+        "playbook_file": "/mnt/virtual_box/nginx_and_postgres_ubuntu.yml",
+        "user":"debian"
+      }
+    ]
+  }
